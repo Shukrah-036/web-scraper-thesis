@@ -1,4 +1,4 @@
-package org.example;
+package org.scrapernest;
 
 import lombok.Getter;
 import lombok.Setter;

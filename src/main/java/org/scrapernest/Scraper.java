@@ -1,13 +1,14 @@
-package org.example;
+package org.scrapernest;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
+import java.util.List;
 
 public class Scraper {
 
-    private static final int scrapingIntervalMinutes = 60;
+    private static final int scrapingIntervalMinutes = 60; //**UPDATE TO QUARTZ LATER**
 
     @Getter
     @Setter
@@ -15,7 +16,7 @@ public class Scraper {
 
     @Getter
     @Setter
-    private Date dateOfCreation;
+    private ZonedDateTime dateOfCreation;
 
     @Getter
     @Setter
@@ -24,6 +25,10 @@ public class Scraper {
     @Getter
     @Setter
     private String scrapingParameters;
+
+    @Getter
+    @Setter
+    private List<Item> scraperItems;
 
     private boolean isActive;
 

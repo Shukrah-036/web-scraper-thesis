@@ -1,7 +1,10 @@
 package org.scrapernest;
 
+import com.example.webscraperthesis.ScraperController;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ScraperController scraperController = new ScraperController();
+        scraperController.scrapeAndSaveResults();
     }
 }

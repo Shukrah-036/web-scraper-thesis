@@ -1,4 +1,4 @@
-package com.scrapernest.webscraperthesis;
+package com.example.webscraperthesis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,14 +1,14 @@
 package Results;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.scrapernest.Item;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ScraperResult {
 
     @Getter
@@ -30,6 +30,4 @@ public class ScraperResult {
     @Getter
     @Setter
     private boolean success;
-
-
 }

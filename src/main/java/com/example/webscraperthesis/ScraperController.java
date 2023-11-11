@@ -7,13 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.scrapernest.Item;
 import org.scrapernest.Scraper;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.util.List;
 
 public class ScraperController {
 
@@ -34,9 +33,20 @@ public class ScraperController {
         associatedItem.setLabel("Price");
         scraper.execute(scrapingParameters);
 
+        try {
+            List<ScraperResult> existingResults = resultRepository.getAll();
+            ScraperResult scraperResult = createScraperResult(scraper);
 
-        ScraperResult scraperResult = createScraperResult(scraper);
-        saveResult(scraperResult);
+            if (hasResultChanged(existingResults, scraperResult)) {
+                Logger.info("Scrape result has changed!");
+            } else {
+                Logger.info("Scrape result has not changed.");
+            }
+
+            saveResult(scraperResult);
+        } catch (IOException e) {
+            Logger.error("Error occurred while getting existing results: {}", e.getMessage(), e);
+        }
 
         return "scraping-result";
     }
@@ -57,5 +67,15 @@ public class ScraperController {
         } catch (IOException e) {
             Logger.error("Error occurred while saving result: {}", e.getMessage(), e);
         }
+    }
+
+    private boolean hasResultChanged(List<ScraperResult> existingResults, ScraperResult newResult) {
+        for (ScraperResult existingResult : existingResults) {
+            if (existingResult.getScraperName().equals(newResult.getScraperName())
+                    && existingResult.getExtractedData().equals(newResult.getExtractedData())) {
+                return false;
+            }
+        }
+        return true;
     }
 }

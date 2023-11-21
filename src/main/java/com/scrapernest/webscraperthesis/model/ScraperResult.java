@@ -1,15 +1,21 @@
-package Results;
+package com.scrapernest.webscraperthesis.model;
 
 import lombok.*;
-import org.scrapernest.Item;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "scraperResults")
 public class ScraperResult {
+
+    @Id
+    private String id;
 
     @Getter
     @Setter

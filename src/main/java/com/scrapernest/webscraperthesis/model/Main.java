@@ -1,6 +1,4 @@
-package org.scrapernest;
-
-import com.example.webscraperthesis.ScraperController;
+package com.scrapernest.webscraperthesis.model;
 
 public class Main {
     public static void main(String[] args) {
